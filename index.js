@@ -10,8 +10,11 @@ var chudeRouter = require('./routers/chude');
 var taikhoanRouter = require('./routers/taikhoan');
 var baivietRouter = require('./routers/baiviet');
 
-var uri = 'mongodb://Admin:Admin123@ac-0bj8nxx-shard-00-01.bbhyout.mongodb.net:27017/trangtin?ssl=true&authSource=admin';
+// Lấy đường dẫn từ biến môi trường của Render, nếu không có thì chạy tạm localhost
+var uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/trangtin';
 mongoose.connect(uri).catch(err => console.log(err));
+// var uri = 'mongodb://Admin:Admin123@ac-0bj8nxx-shard-00-01.bbhyout.mongodb.net:27017/trangtin?ssl=true&authSource=admin';
+// mongoose.connect(uri).catch(err => console.log(err));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
